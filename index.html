@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Avoid Boxes</title>
+        
+        <!-- Favicon 에러 방지 -->
+        <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <!-- 상단 바 -->
+        <header class="top-bar">
+            <div class="top-bar-left">
+                <h1>Avoid Boxes</h1>
+                <select id="language" class="language-select">
+                    <option value="ko">🇰🇷 한국어</option>
+                    <option value="en">🇺🇸 English</option>
+                </select>
+            </div>
+            
+            <div class="top-bar-center">
+                <!-- 게임 정보 -->
+                <div class="game-stats">
+                    <div class="stat-item">
+                        <span id="healthText">❤️ 체력: <span id="healthValue">3</span></span>
+                    </div>
+                    <div class="stat-item">
+                        <span id="timeText">⏱️ 시간: <span id="timeValue">0.0</span>초</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="top-bar-right">
+                <!-- 게임 컨트롤 버튼 -->
+                <button id="startBtn" class="control-btn start-btn">시작</button>
+                <button id="pauseBtn" class="control-btn pause-btn" disabled>일시정지</button>
+                <button id="resetBtn" class="control-btn reset-btn">초기화</button>
+                
+                <!-- 설정 컨트롤 -->
+                <select id="difficulty" class="difficulty-select">
+                    <option value="easy">쉬움</option>
+                    <option value="normal" selected>보통</option>
+                    <option value="hard">어려움</option>
+                </select>
+            </div>
+        </header>
+
+        <!-- 메인 게임 영역 -->
+        <div class="main-game-area">
+            <!-- 왼쪽: 게임 조작 방법 (좁게) -->
+            <aside class="controls-panel">
+                <h3 id="controlsTitle">🎮 조작</h3>
+                <div class="controls-compact">
+                    <div class="control-key">
+                        <span class="key">↑</span>
+                        <span id="controlUp">위</span>
+                    </div>
+                    <div class="control-key">
+                        <span class="key">↓</span>
+                        <span id="controlDown">아래</span>
+                    </div>
+                    <div class="control-key">
+                        <span class="key">←</span>
+                        <span id="controlLeft">왼쪽</span>
+                    </div>
+                    <div class="control-key">
+                        <span class="key">→</span>
+                        <span id="controlRight">오른쪽</span>
+                    </div>
+                </div>
+                <h4 id="itemsTitle">💎 아이템</h4>
+                <div class="items-compact">
+                    <div class="item-mini">
+                        <span class="icon">⭐</span>
+                        <span id="itemGodmode">무적</span>
+                    </div>
+                    <div class="item-mini">
+                        <span class="icon">❤️</span>
+                        <span id="itemHealth">회복</span>
+                    </div>
+                    <div class="item-mini">
+                        <span class="icon">🔵</span>
+                        <span id="itemSpeedUp">가속</span>
+                    </div>
+                    <div class="item-mini">
+                        <span class="icon">⚫</span>
+                        <span id="itemSpeedDown">감속</span>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- 중앙: 게임 캔버스 (동적 크기) -->
+            <div class="game-container">
+                <canvas id="gameCanvas"></canvas>
+                <div id="gameOverlay" class="game-overlay hidden">
+                    <div class="overlay-content">
+                        <h2 id="overlayTitle">게임 시작</h2>
+                        <p id="overlayMessage">시작 버튼을 눌러주세요</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 오른쪽: 리더보드 (넓게) -->
+            <aside class="leaderboard-panel">
+                <h3 id="leaderboardTitle">🏆 리더보드</h3>
+                <div id="leaderboard" class="leaderboard-list">
+                    <!-- 리더보드 항목이 동적으로 추가됩니다 -->
+                </div>
+            </aside>
+        </div>
+
+        <!-- 오디오 요소 -->
+        <audio id="bgMusic" loop preload="auto">
+            <source src="audio/bgm.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="hitSound" preload="auto">
+            <source src="audio/hit.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="itemSound" preload="auto">
+            <source src="audio/item.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="powerupSound" preload="auto">
+            <source src="audio/powerup.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="gameoverSound" preload="auto">
+            <source src="audio/gameover.mp3" type="audio/mpeg">
+        </audio>
+
+        <!-- 스크립트 로드 -->
+        <script src="js/audio_manager.js"></script>
+        <script src="js/ui_manager.js"></script>
+        <script src="js/game_state.js"></script>
+        <script src="js/game_entities.js"></script>
+        <script src="js/game_controller.js"></script>
+    </body>
+</html>
